@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
@@ -47,7 +48,7 @@ class PasswordResetRequestView(View):
                     }
                     email = render_to_string(email_template_name, c)
                     try:
-                        send_mail(subject, email, 'dimats337@gmail.com', [user.email], fail_silently=False)
+                        send_mail(subject, email, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
                     return redirect("/password_reset/done/")
