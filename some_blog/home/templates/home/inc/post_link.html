@@ -1,0 +1,17 @@
+<div class="post-link row">
+    <h4 class="col-md-5">
+        <a  href="{% url 'blog:detail' pk=post.id %}">{{ post }}</a>
+    </h4>
+    <div class="col-md-3">by {{ post.owner.username }}</div>
+    {% load humanize %}
+    <div class="col-md-2">{{ post.created_at|naturaltime }}</div>
+    {% load static %}
+    <div class="col-md-2">
+        {% if post.owner.id == user.id or user.is_staff%}
+            <a href="{% url 'blog:delete' pk=post.id %}">
+                <img style="width: 30px" src="{% static 'home/img/delete.svg' %}">
+            </a>
+        {% endif %}
+    </div>
+    <hr>
+</div>

@@ -3,34 +3,64 @@
 
 {% block content %}
 
-    <div class="container">
-        <div>{{ post.topic }}</div>
-        <div>{{ post.text }}</div>
-        {% if post.photo %}
-        <div class="post-img">
-            <img src="/posts{{ post.photo.url }}">
+    {% load static %}
+    <div class="container post-detail">
+        <div class="row">
+            <div class="col-10">
+                <h1>
+                    {{ post.topic }}
+                </h1>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+                <div class="">
+                {% if user.id == post.owner.id %}
+                    <a href="{% url 'blog:update' pk=post.id %}">
+                        <img style="width: 30px" src="{% static 'home/img/update.svg' %}">
+                    </a>
+                {% endif %}
+                {% if user.id == post.owner.id or user.is_staff%}
+                    <a href="{% url 'blog:delete' pk=post.id %}">
+                        <img style="width: 30px" src="{% static 'home/img/delete.svg' %}">
+                    </a>
+                {% endif %}
+                </div>
+            </div>
         </div>
-        {% endif %}
+        <hr>
+        <div class="post-content">
+            <div class="row">
+                <div class="col-lg-8">
+                    {{ post.text }}
+                </div>
+                <div class="col-lg-4 post-img">
+                    {% if post.photo %}
+                        <img src="/posts{{ post.photo.url }}">
+                    {% endif %}
+                </div>
 
-        {% if user.id == post.owner.id %}
-            <a href="{% url 'blog:update' pk=post.id %}">Update</a>
-        {% endif %}
-        {% if user.id == post.owner.id or user.is_staff%}
-            <a href="{% url 'blog:delete' pk=post.id %}">Delete</a>
-        {% endif %}
+            </div>
+        </div>
 
+        <h4>Comments</h4>
+        <hr>
         {% if user.is_authenticated  %}
-            <form method="POST">
+            <form method="POST" class="comment-form">
                 {% csrf_token %}
                 {{ form.media}}
-                {{ form.as_p }}
-                <input class="submit-but" type="submit" value="Save">
+                <div class="d-flex align-items-center">
+                    {{ form.text }}
+                    <input class="btn btn-success m-1" type="submit" value="Save">
+                </div>
             </form>
         {% endif %}
         {% if comments %}
             {% for comment in comments %}
-                <div><strong>{{ comment.owner.username }}: </strong>{{ comment.text }}</div>
+                <div class="comment-text"><strong>{{ comment.owner.username }}: </strong>
+                    {{ comment.text }}
+                </div>
             {% endfor %}
+        {% else %}
+            No comments
         {% endif %}
 
     </div>

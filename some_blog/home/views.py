@@ -16,7 +16,7 @@ from django.contrib.auth.forms import PasswordResetForm
 class MainView(View):
     def get(self, request):
         Posts = apps.get_model('blog', 'Post')
-        posts = Posts.objects.all()
+        posts = Posts.objects.all().order_by('-created_at')
         ctx = {'posts': posts}
         return render(request, 'home/main.html', ctx)
 

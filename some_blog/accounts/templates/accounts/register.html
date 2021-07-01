@@ -6,10 +6,14 @@
     <form class="login" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input class="submit-but center-but" type="submit"  value="Submit" />
-        <p style="font-size: 15px;">
-            <span><a href="{% url 'login'%}?next={% url 'home:home'%}">login</a></span>
-        </p>
+        <br>
+        <div class="login-buttons">
+            <input class="btn btn-dark" type="submit"  value="Submit" />
+        </div>
+        <br>
+        <div class="login-links">
+            <span>or <a href="{% url 'login'%}?next={% url 'home:home'%}">login</a></span>
+        </div>
     </form>
 </div>
 {% endblock %}

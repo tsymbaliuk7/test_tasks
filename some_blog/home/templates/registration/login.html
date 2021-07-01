@@ -5,12 +5,19 @@
     <h1>Login</h1>
     <form class="login" method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input class="submit-but center-but" type="submit"  value="Submit" />
-        <input type="hidden" name="next" value="{{ next }}" />
-        <p style="font-size: 15px;">
-            <span><a href="{% url 'register' %}">register</a></span>
-        </p>
+        <div>{{ form.username.label }}:</div>
+        <div>{{ form.username }}</div>
+        <div>{{ form.password.label }}:</div>
+        <div>{{ form.password }}</div>
+        <br>
+        <div class="login-buttons">
+            <input class="btn btn-dark" type="submit"  value="Submit" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+        <br>
+        <div class="login-links">
+            <span><a href="{% url 'register' %}">register</a> or <a href="{% url 'home:password_reset' %}">reset password</a></span>
+        </div>
     </form>
 </div>
 {% endblock %}

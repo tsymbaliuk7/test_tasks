@@ -4,14 +4,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="container content">
-    <h1>Greetings {{ user.username }} {{ user.is_admin }}!</h1>
+<div class="container">
+    <h1>Greetings {{ user.username }}!</h1>
+    <hr>
     {% if user.is_authenticated  %}
-        <div><a href="{% url 'blog:create' %}">create</a></div>
+        <a class="btn btn-primary" href="{% url 'blog:create' %}">Create new post</a>
     {% endif %}
     {% if posts %}
+        <h2 style="margin-top: 70px">Posts: </h2>
         {% for post in posts %}
-            <div><a href="{% url 'blog:detail' pk=post.id %}">{{ post }}</a>({{ post.owner.username }})</div>
+            {% include 'home/inc/post_link.html' with post=post %}
         {% endfor %}
     {% else %}
         <p>There are no posts!</p>

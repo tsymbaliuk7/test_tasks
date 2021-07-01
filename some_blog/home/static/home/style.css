@@ -1,8 +1,95 @@
 
-.post-img{
+
+.post-img img{
+    width: 100%;
+
+}
+
+.content .container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+}
+
+
+.login{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 40px;
+    width: 50%;
+    margin: 5px;
+
+}
+
+.login input{
     width: 100%;
 }
 
-.post-img img{
-    width: 45%;
+.login textarea{
+    width: 100%;
+    resize: none;
+}
+
+.login .btn{
+    width: 40%;
+}
+
+.login-links{
+    width: 100%;
+    text-align: center;
+}
+
+.login-links a{
+    color: black;
+}
+
+.login-buttons{
+    text-align: center;
+}
+
+.footer a{
+    color: white;
+}
+
+.post-link{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.post-link a{
+    color: black;
+}
+
+.post-detail h1{
+    margin: 0;
+}
+
+.post-content{
+    white-space: pre-line;
+    background: ghostwhite;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 60px;
+}
+
+.comment-form{
+    margin-bottom: 50px;
+}
+.comment-form textarea{
+    resize: none;
+    height: 50px;
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.comment-text{
+    padding: 20px;
+    white-space: pre-line;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    border-radius: 20px;
+
+
 }

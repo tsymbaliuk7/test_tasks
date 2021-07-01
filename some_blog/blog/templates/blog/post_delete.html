@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="content container d-flex flex-column align-items-center">
-    <h1>Delete post: {{ post }}?</h1>
-    <form action="" method="POST">
-      {% csrf_token %}
-        <div class="d-flex justify-content-center">
-            <input class="submit-but" type="submit" value="Cancel" onclick="window.location.href='{% url 'blog:detail' pk=post.id %}';return false;">
-            <input class="submit-but" type="submit" value="Yes, delete.">
-        </div>
-    </form>
+<div class="content container d-flex justify-content-center align-items-center">
+    <div>
+        <h1>Delete post: {{ post }}?</h1>
+        <form action="" method="POST">
+          {% csrf_token %}
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-dark m-1" type="submit" value="Cancel" onclick="window.location.href='{% url 'blog:detail' pk=post.id %}';return false;">
+                <input class="btn btn-dark m-1" type="submit" value="Yes, delete.">
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
