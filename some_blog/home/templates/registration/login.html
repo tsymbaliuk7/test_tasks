@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content container d-flex justify-content-center flex-column align-items-center">
+    <h1>Login</h1>
+    <form class="login" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="submit-but center-but" type="submit"  value="Submit" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <p style="font-size: 15px;">
+            <span><a href="{% url 'register' %}">register</a></span>
+        </p>
+    </form>
+</div>
+{% endblock %}

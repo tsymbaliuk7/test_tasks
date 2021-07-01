@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div>{{ post.topic }}</div>
+        <div>{{ post.text }}</div>
+        {% if post.photo %}
+        <div class="post-img">
+            <img src="/posts{{ post.photo.url }}">
+        </div>
+        {% endif %}
+
+        {% if user.id == post.owner.id %}
+            <a href="{% url 'blog:update' pk=post.id %}">Update</a>
+        {% endif %}
+        {% if user.id == post.owner.id or user.is_staff%}
+            <a href="{% url 'blog:delete' pk=post.id %}">Delete</a>
+        {% endif %}
+
+        {% if user.is_authenticated  %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.media}}
+                {{ form.as_p }}
+                <input class="submit-but" type="submit" value="Save">
+            </form>
+        {% endif %}
+        {% if comments %}
+            {% for comment in comments %}
+                <div><strong>{{ comment.owner.username }}: </strong>{{ comment.text }}</div>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
+{% endblock %}

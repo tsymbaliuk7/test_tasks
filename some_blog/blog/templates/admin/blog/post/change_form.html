@@ -1,0 +1,6 @@
+{% extends "admin/change_form.html" %}
+
+
+{% block object-tools-items %}
+    <a href="{% url 'blog:delete_comments' pk=original.pk %}" class="historylink">DELETE ALL COMMENTS</a>
+{% endblock %}

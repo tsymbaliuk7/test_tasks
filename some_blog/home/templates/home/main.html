@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    SomeBlog
+{% endblock %}
+
+{% block content %}
+<div class="container content">
+    <h1>Greetings {{ user.username }} {{ user.is_admin }}!</h1>
+    {% if user.is_authenticated  %}
+        <div><a href="{% url 'blog:create' %}">create</a></div>
+    {% endif %}
+    {% if posts %}
+        {% for post in posts %}
+            <div><a href="{% url 'blog:detail' pk=post.id %}">{{ post }}</a>({{ post.owner.username }})</div>
+        {% endfor %}
+    {% else %}
+        <p>There are no posts!</p>
+    {% endif %}
+</div>
+{% endblock %}

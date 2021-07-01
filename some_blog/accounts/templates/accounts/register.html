@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content container d-flex justify-content-center flex-column align-items-center">
+    <h1>Register</h1>
+    <form class="login" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="submit-but center-but" type="submit"  value="Submit" />
+        <p style="font-size: 15px;">
+            <span><a href="{% url 'login'%}?next={% url 'home:home'%}">login</a></span>
+        </p>
+    </form>
+</div>
+{% endblock %}
